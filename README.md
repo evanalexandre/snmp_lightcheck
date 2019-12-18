@@ -1,7 +1,7 @@
-# snmp_lightcheck
+# SNMP Light Check
 SNMP poll light levels for a list of Cisco IOS node-ports
 
-## Prerequisites
+## Installation
 This script uses the pyyaml and easysnmp modules
 
 `pip install pyyaml`
