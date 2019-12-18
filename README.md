@@ -1,2 +1,2 @@
 # snmp_lightcheck
-Check light levels for a list of node-ports
+SNMP poll light levels for a list of Cisco IOS node-ports
