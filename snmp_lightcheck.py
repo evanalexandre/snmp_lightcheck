@@ -20,12 +20,19 @@ def get_port_index(session, port):
     return port_index
 
 
-def get_port_light_lvl(session, port):
-    port_index = get_port_index(session, port)
-    light_lvl_oid = config['light_lvl_mib'] + port_index
-    get = session.get(light_lvl_oid)
+def get_port_light_lvl(session, port_index):
+    port_lvl_oid = config['light_lvl_mib'] + port_index
+    get = session.get(port_lvl_oid)
     light_lvl = float(get.value) / 10
     return(light_lvl)
+
+
+def get_port_low_warn_threshold(session, port_index):
+    port_threshold_oid = config['light_threshold_mib'] + port_index + '.'
+    low_warn_oid = port_threshold_oid + '3'
+    get = session.get(low_warn_oid)
+    low_warn = float(get.value) / 10
+    return(low_warn)
 
 
 if __name__ == '__main__':
@@ -46,6 +53,10 @@ if __name__ == '__main__':
 
             session = Session(hostname=fqdn, community=config['snmp_community'], version=2)
 
-            port_light_lvl = str(get_port_light_lvl(session, port))
+            port_index = get_port_index(session, port)
 
-            print(host + ',' + port + ',' + port_light_lvl)
+            port_light_lvl = str(get_port_light_lvl(session, port_index))
+
+            port_low_warn = str(get_port_low_warn_threshold(session, port_index))
+
+            print(host + ',' + port + ',' + port_light_lvl + ',' + port_low_warn)
