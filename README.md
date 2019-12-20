@@ -12,7 +12,7 @@ See https://easysnmp.readthedocs.io/en/latest/ for easysnmp installation instruc
 Update config.yml with the snmp community string and domain for your nodes
 
 ## Create a Node-port CSV
-This script reads a node,port list from a CSV. Create a CSV the node-ports you want to poll, using example.csv as a template.
+This script reads a node,port list from a CSV. Create a CSV with the node-ports you want to poll using example.csv as a template.
 
 ## Usage
 `python snmp_lightcheck.py my_node_ports.csv`
