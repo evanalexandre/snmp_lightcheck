@@ -77,7 +77,10 @@ if __name__ == '__main__':
             columns = row.split(',')
             host = columns[0]
             port = columns[1].split('\n')[0]
-            optic = OpticTransceiver(host, port)
-            optic_lvl = str(optic.poll_light_lvl())
-            optic_low_warn = str(optic.poll_low_warn_threshold())
-            print(host + ',' + port + ',' + optic_lvl + ',' + optic_low_warn)
+            try:
+                optic = OpticTransceiver(host, port)
+                optic_lvl = str(optic.poll_light_lvl())
+                optic_low_warn = str(optic.poll_low_warn_threshold())
+                print(host + ',' + port + ',' + optic_lvl + ',' + optic_low_warn)
+            except:
+                print('Error collecting data for ' + host + ' ' + port)
